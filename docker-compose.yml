@@ -1,9 +1,11 @@
 # only used in development
 version: '3'
 services:
-  postgres:
+  db:
     image: 'postgres:latest'
     environment:
+      - POSTGRES_DB=api
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres_password
   nginx:
     restart: always
@@ -19,11 +21,12 @@ services:
     volumes:
       - ./digitalace-backend:/app
     environment:
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - DB_HOST=db
+      - DB_NAME=api
+      - DB_USER=postgres
+      - DB_PASS=postgres_password
+    depends_on:
+      - db
   client:
     build:
       dockerfile: Dockerfile.dev
