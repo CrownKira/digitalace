@@ -7,25 +7,24 @@ before_install:
   - docker build -t crownkira/digitalace-frontend-test -f ./digitalace-frontend/Dockerfile.dev ./digitalace-frontend
 
 script:
-  - docker run -e CI=true crownkira/digitalace-frontend-test yarn test
+  - docker run -e CI=true crownkira/digitalace-frontend-test yarn run test
+# after_success:
+#   - docker build -t crownkira/digitalace-frontend ./digitalace-frontend
+#   - docker build -t crownkira/digitalace-backend ./digitalace-backend
+#   - docker build -t crownkira/digitalace-nginx ./nginx
+#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#   - docker push crownkira/digitalace-frontend
+#   - docker push crownkira/digitalace-backend
+#   - docker push crownkira/digitalace-nginx
 
-after_success:
-  - docker build -t crownkira/digitalace-frontend ./digitalace-frontend
-  - docker build -t crownkira/digitalace-backend ./digitalace-backend
-  - docker build -t crownkira/digitalace-nginx ./nginx
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push crownkira/digitalace-frontend
-  - docker push crownkira/digitalace-backend
-  - docker push crownkira/digitalace-nginx
-
-deploy:
-  provider: elasticbeanstalk
-  region: 'us-east-2'
-  app: 'digitalace'
-  env: 'Digitalace-env'
-  bucket_name:
-  bucket_path:
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+# deploy:
+#   provider: elasticbeanstalk
+#   region: 'us-east-2'
+#   app: 'digitalace'
+#   env: 'Digitalace-env'
+#   bucket_name:
+#   bucket_path:
+#   on:
+#     branch: master
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: $AWS_SECRET_KEY
