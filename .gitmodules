@@ -1,0 +1,6 @@
+[submodule "digitalace-backend"]
+	path = digitalace-backend
+	url = https://github.com/CrownKira/digitalace-backend
+[submodule "digitalace-frontend"]
+	path = digitalace-frontend
+	url = https://github.com/CrownKira/digitalace-frontend.git
