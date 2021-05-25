@@ -1,29 +1,29 @@
 # only used in development
+# old docker-compose file will set up nginx as a reverse proxy
+# to access frontend and backend
 version: '3'
 services:
-  client:
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./digitalace-frontend
-    volumes:
-      - /app/node_modules
-      - ./digitalace-frontend:/app
-    ports:
-      - '3000:3000'
   db:
     image: 'postgres:latest'
     environment:
       - POSTGRES_DB=api
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres_password
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '3050:80'
   api:
     build:
       dockerfile: Dockerfile.dev
       context: ./digitalace-backend
     volumes:
       - ./digitalace-backend:/app
-    ports:
-      - '5000:5000'
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -35,3 +35,10 @@ services:
       - DB_PASS=postgres_password
     depends_on:
       - db
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./digitalace-frontend
+    volumes:
+      - /app/node_modules
+      - ./digitalace-frontend:/app
