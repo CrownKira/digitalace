@@ -1,5 +1,5 @@
 # only used in development
-# this old docker-compose file will set up nginx as
+# this file will set up nginx as
 # a reverse proxy to access frontend and backend
 version: '3'
 services:
