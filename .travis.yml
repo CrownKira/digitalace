@@ -5,9 +5,11 @@ services:
 
 before_install:
   - docker build -t crownkira/digitalace-frontend-test -f ./digitalace-frontend/Dockerfile.dev ./digitalace-frontend
+  - docker build -t crownkira/digitalace-backend-test -f ./digitalace-backend/Dockerfile.dev ./digitalace-backend
 
 script:
   - docker run -e CI=true crownkira/digitalace-frontend-test yarn run test
+  - docker run -e CI=true crownkira/digitalace-backend-test sh -c "python manage.py wait_for_db && python manage.py test"
 # after_success:
 #   - docker build -t crownkira/digitalace-frontend ./digitalace-frontend
 #   - docker build -t crownkira/digitalace-backend ./digitalace-backend
