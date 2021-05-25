@@ -1,6 +1,6 @@
 # only used in development
-# old docker-compose file will set up nginx as a reverse proxy
-# to access frontend and backend
+# this old docker-compose file will set up nginx as
+# a reverse proxy to access frontend and backend
 version: '3'
 services:
   db:
