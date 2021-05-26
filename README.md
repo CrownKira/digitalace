@@ -10,10 +10,12 @@
 - Linux users need to follow the instructions on [Get Docker CE for Ubuntu](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and then [Install Docker Compose](https://docs.docker.com/compose/install/) separately.
 - You are good to go when you can successfully run:
 `docker-compose --version`
-3. Clone this repository and navigate to it using "cd" in your command line or shell tool.
-4. Run docker compose up (This will start up all containers)
-5. Point your browser to http://localhost:3000 to access the frontend 
-6. Point your browser to http://localhost:5000 to access the backend 
+3. Install ModHeader
+To test our API, we use [Google Chrome](https://www.google.com/chrome/) with the [ModHeader extension](https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj?hl=en).
+4. Clone this repository and navigate to it using "cd" in your command line or shell tool.
+5. Run docker compose up (This will start up all containers)
+6. Point your browser to http://localhost:3000 to access the frontend 
+7. Point your browser to http://localhost:5000 to access the backend 
 
 
 ## Development  
@@ -32,7 +34,7 @@
 #### As a Collaborator
 ##### To make a pull request 
 - `git clone <repo_url>`
-- `d to the project directory
+- cd to the project directory
 - `git checkout <branch>`
 - (make changes)
 - `git add .`
