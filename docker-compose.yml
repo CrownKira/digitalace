@@ -10,14 +10,6 @@ services:
       - ./digitalace-frontend:/app
     ports:
       - '3000:3000'
-  db:
-    image: 'postgres:latest'
-    environment:
-      - POSTGRES_DB=digitalace_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres_password
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -37,3 +29,11 @@ services:
       - DB_PASS=postgres_password
     depends_on:
       - db
+  db:
+    image: 'postgres:latest'
+    environment:
+      - POSTGRES_DB=digitalace_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_password
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
