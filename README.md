@@ -25,7 +25,7 @@
 ### Useful Commands
 - `docker exec -it <container> sh`: to access the container
 - `docker compose run <container> sh -c "<command>`: to run the command in the container
-- `dokcer compose run <container>`: to run the container 
+- `docker compose run <container>`: to run the container 
 
 ### Contribution Guidelines 
 
