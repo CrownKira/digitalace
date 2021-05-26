@@ -19,7 +19,7 @@
 - To test our API, we use [Google Chrome](https://www.google.com/chrome/) with the [ModHeader extension](https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj?hl=en).
 
 4. Clone this repository and navigate to it using "cd" in your command line or shell tool.
-5. Run docker compose up (This will start up all containers).
+5. Run `docker compose up` (This will start up all containers).
 6. Point your browser to http://localhost:3000 to access the frontend.
 7. Point your browser to http://localhost:5000 to access the backend.
 
@@ -34,7 +34,7 @@
 ### Useful Commands
 
 - `docker exec -it <container> sh`: to access the container
-- `docker compose run <container> sh -c "<command>`: to run the command in the container
+- `docker compose run <container> sh -c "<command>"`: to run the command in the container
 - `docker compose run <container>`: to run the container
 
 ### Contribution Guidelines
