@@ -1,6 +1,7 @@
-# only used for development
+# TODO: refactor all docker-compose files and dockerfiles
 version: '3'
 services:
+  # only used for development:
   client:
     build:
       dockerfile: Dockerfile.dev
@@ -10,6 +11,7 @@ services:
       - ./digitalace-frontend:/app
     ports:
       - '3000:3000'
+  # only used for development, testing:
   api:
     build:
       dockerfile: Dockerfile.dev
