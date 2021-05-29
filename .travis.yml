@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t crownkira/digitalace-frontend-test -f ./digitalace-frontend/Dockerfile.dev ./digitalace-frontend
+  - docker build -t crownkira/digitalace-frontend-test -f ./digitalace-frontend/Dockerfile.test ./digitalace-frontend
 
 install:
   - pip install docker-compose

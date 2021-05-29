@@ -1,4 +1,4 @@
-# only used in development
+# only used for development
 version: '3'
 services:
   client:
@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.dev
       context: ./digitalace-frontend
     volumes:
-      - /app/node_modules
+      # - /app/node_modules
       - ./digitalace-frontend:/app
     ports:
       - '3000:3000'
