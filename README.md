@@ -24,7 +24,8 @@
 7. Run `docker compose up --build` to create and run all containers.
 
 - To run a specific service, please refer to [this section](#useful-commands).
-- It might take a while for all the servers to be ready when you are running it for the first time. (so please be patient ^.^) 
+- It might take a while for all the servers to be ready when you are running it for the first time. (so please be patient ^.^)
+
 9. Point your browser to http://localhost:3000 to access the frontend.
 10. Point your browser to http://localhost:5000 to access the backend.
 
@@ -67,13 +68,13 @@
 - `git push origin <branch>`
 - compare and pull request
 
-
 #### To sync your forked repo
 
-(`cd` to the root and `checkout` to `main` branch)
--  `git remote add upstream <url>`
--  `git remote -v` to check that this repo has been added as upstream
--  `git reset --hard` to reset all local changes to the latest local commit 
--  `git fetch upstream`
--  `git merge upstream/main`
--  `git pull origin main` 
+(`cd` to the root and `git checkout main`)
+
+- `git remote add upstream <url>`
+- `git remote -v` to check that this repo has been added as upstream
+- `git reset --hard` to reset all local changes to the latest local commit
+- `git fetch upstream`
+- `git merge upstream/main`
+- `git push origin main`
