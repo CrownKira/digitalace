@@ -14,23 +14,24 @@ install:
 script:
   - docker run -e CI=true crownkira/digitalace-frontend-test yarn run test --passWithNoTests
   - docker-compose run api sh -c "python manage.py wait_for_db && python manage.py test && flake8 --ignore=E501"
-# after_success:
-#   - docker build -t crownkira/digitalace-frontend ./digitalace-frontend
-#   - docker build -t crownkira/digitalace-backend ./digitalace-backend
-#   - docker build -t crownkira/digitalace-nginx ./nginx
-#   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-#   - docker push crownkira/digitalace-frontend
-#   - docker push crownkira/digitalace-backend
-#   - docker push crownkira/digitalace-nginx
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: 'us-east-2'
-#   app: 'digitalace'
-#   env: 'Digitalace-env'
-#   bucket_name:
-#   bucket_path:
-#   on:
-#     branch: main
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_KEY
+after_success:
+  - docker build -t crownkira/digitalace-frontend ./digitalace-frontend
+  - docker build -t crownkira/digitalace-backend ./digitalace-backend
+  - docker build -t crownkira/digitalace-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push crownkira/digitalace-frontend
+  - docker push crownkira/digitalace-backend
+  - docker push crownkira/digitalace-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'digitalace'
+  env: 'Digitalace-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-486208507309'
+  bucket_path: 'docker-digitalace'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
