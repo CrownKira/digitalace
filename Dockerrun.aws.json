@@ -3,14 +3,14 @@
   "containerDefinitions": [
     {
       "name": "client",
-      "image": "crownkira/digitalace-client",
+      "image": "crownkira/digitalace-frontend",
       "hostname": "client",
       "essential": false,
       "memory": 128
     },
     {
       "name": "api",
-      "image": "crownkira/digitalace-api",
+      "image": "crownkira/digitalace-backend",
       "hostname": "api",
       "essential": false,
       "memory": 128
@@ -19,7 +19,7 @@
       "name": "nginx",
       "image": "crownkira/digitalace-nginx",
       "hostname": "nginx",
-      "essential": false,
+      "essential": true,
       "portMappings": [
         {
           "hostPort": 80,
