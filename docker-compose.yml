@@ -2,6 +2,13 @@
 version: '3'
 services:
   # only used for development:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3000:80'
   client:
     build:
       dockerfile: Dockerfile.dev
@@ -9,8 +16,8 @@ services:
     volumes:
       # - /app/node_modules
       - ./digitalace-frontend:/app
-    ports:
-      - '3000:3000'
+    # ports:
+    #   - '3000:3000'
   # only used for development, testing:
   api:
     build:
