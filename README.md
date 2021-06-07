@@ -1,6 +1,7 @@
 # DigitaLAce
 
 [![Build Status](https://travis-ci.com/CrownKira/digitalace.svg?branch=main)](https://travis-ci.com/CrownKira/digitalace)
+![GitHub](https://img.shields.io/github/license/CrownKira/digitalace)
 
 ## Getting Started
 

@@ -16,8 +16,6 @@ services:
     volumes:
       # - /app/node_modules
       - ./digitalace-frontend:/app
-    # ports:
-    #   - '3000:3000'
   # only used for development, testing:
   api:
     build:
