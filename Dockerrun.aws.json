@@ -13,6 +13,12 @@
       "image": "crownkira/digitalace-backend",
       "hostname": "api",
       "essential": false,
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "containerPort": 5000
+        }
+      ],
       "memory": 128
     },
     {
