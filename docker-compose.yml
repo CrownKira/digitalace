@@ -30,10 +30,10 @@ services:
              python manage.py migrate &&
              python manage.py runserver 0.0.0.0:5000"
     environment:
-      - DB_HOST=db
-      - DB_NAME=digitalace_db
-      - DB_USER=postgres
-      - DB_PASS=postgres_password
+      - PGHOST=db
+      - PGNAME=digitalace_db
+      - PGUSER=postgres
+      - PGPASSWORD=postgres_password
     depends_on:
       - db
   db:
