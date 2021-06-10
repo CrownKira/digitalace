@@ -31,7 +31,7 @@ services:
              python manage.py runserver 0.0.0.0:5000"
     environment:
       - PGHOST=db
-      - PGNAME=digitalace_db
+      - PGDATABASE=digitalace_db
       - PGUSER=postgres
       - PGPASSWORD=postgres_password
     depends_on:
