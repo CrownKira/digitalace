@@ -1,0 +1,53 @@
+name: Deployment From Github To AWS
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+    - run: docker build -t crownkira/digitalace-frontend ./digitalace-frontend
+    - run: docker build -t crownkira/digitalace-backend ./digitalace-backend
+    - run: docker build -t crownkira/digitalace-nginx ./nginx
+    - run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_ID }}" --password-stdin
+    - run: docker push crownkira/digitalace-frontend
+    - run: docker push crownkira/digitalace-backend
+    - run: docker push crownkira/digitalace-nginx
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Latest Repo
+        uses: actions/checkout@main
+        
+      - name: Generate Deployment Package
+        run: zip -r deploy.zip * 
+      
+      - name: Get timestamp
+        uses: gerred/actions/current-time@main
+        id: current-time
+      
+      - name: Run string replace
+        uses: frabert/replace-string-action@main
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: "${{ steps.current-time.outputs.time }}"
+          replace-with: '-'
+          flags: 'g'
+          
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: digitalace
+          environment_name: Digitalace-env
+          version_label: "digitalace-${{ steps.format-time.outputs.replaced }}"
+          region: us-east-2
+          deployment_package: deploy.zip
