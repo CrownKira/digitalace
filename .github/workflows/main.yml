@@ -9,6 +9,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Latest Repo
+        uses: actions/checkout@master
+
       - name: Build the Docker image
         run: docker build -t crownkira/digitalace-frontend ./digitalace-frontend
       - run: docker build -t crownkira/digitalace-backend ./digitalace-backend
@@ -17,9 +20,6 @@ jobs:
       - run: docker push crownkira/digitalace-frontend
       - run: docker push crownkira/digitalace-backend
       - run: docker push crownkira/digitalace-nginx
-
-      - name: Checkout Latest Repo
-        uses: actions/checkout@master
         
       - name: Generate Deployment Package
         run: zip -r deploy.zip * 
