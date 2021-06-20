@@ -4,20 +4,19 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-    - run: docker build -t crownkira/digitalace-frontend ./digitalace-frontend
-    - run: docker build -t crownkira/digitalace-backend ./digitalace-backend
-    - run: docker build -t crownkira/digitalace-nginx ./nginx
-    - run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_ID }}" --password-stdin
-    - run: docker push crownkira/digitalace-frontend
-    - run: docker push crownkira/digitalace-backend
-    - run: docker push crownkira/digitalace-nginx
+      - uses: actions/checkout@v2
+      - run: docker build -t crownkira/digitalace-frontend ./digitalace-frontend
+      - run: docker build -t crownkira/digitalace-backend ./digitalace-backend
+      - run: docker build -t crownkira/digitalace-nginx ./nginx
+      - run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_ID }}" --password-stdin
+      - run: docker push crownkira/digitalace-frontend
+      - run: docker push crownkira/digitalace-backend
+      - run: docker push crownkira/digitalace-nginx
 
   deploy:
     runs-on: ubuntu-latest
