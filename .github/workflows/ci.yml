@@ -18,7 +18,7 @@ jobs:
         run: docker build -t crownkira/digitalace-frontend-test -f ./digitalace-frontend/Dockerfile.test ./digitalace-frontend
 
       - name: Install Dependencies
-        run: docker build -t crownkira/digitalace-frontend-test -f ./digitalace-frontend/Dockerfile.test ./digitalace-frontend
+        run: pip install docker-compose
 
       - name: Run CI
         run: |
