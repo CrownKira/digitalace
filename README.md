@@ -59,16 +59,6 @@
 - `git push origin <branch>`
 - compare and pull request
 
-##### To contribute to a pull request branch
-
-- `git fetch origin pull/<id>/head:<branch>`
-- `git checkout <branch>`
-- (make changes)
-- `git add .`
-- `git commit -m 'commit message'`
-- `git push origin <branch>`
-- compare and pull request
-
 ##### To sync your forked repo
 
 (`cd` to the root and `git checkout main`)
